@@ -3,23 +3,43 @@ from student import Student
 
 class TestStudent(unittest.TestCase):
 
-    def test_full_name(self):
-        student = Student('Marty', 'McFly')
+    @classmethod
+    def setUpClass(cls):
+        print('setUpClass')
 
-        self.assertEqual(student.full_name, 'Marty McFly')
+
+    @classmethod
+    def tearDownClass(cls):
+        print('tearDownClass')
+
+
+    def setUp(self):
+        print('setUp')
+        self.student = Student('Marty', 'McFly')
+
+
+    def tearDown(self):
+        print('tearDown')
+
+
+    def test_full_name(self):
+        # student = Student('Marty', 'McFly')
+        print('test_full_name')
+        self.assertEqual(self.student.full_name, 'Marty McFly')
 
 
     def test_email(self):
-        student = Student('Marty', 'McFly')
-
-        self.assertEqual(student.email, 'marty.mcfly@email.com')
+        # student = Student('Marty', 'McFly')
+        print('test_email')
+        self.assertEqual(self.student.email, 'marty.mcfly@email.com')
 
 
     def test_alert_santa(self):
-        student = Student('Marty', 'McFly')
-        student.alert_santa()
+        # student = Student('Marty', 'McFly')
+        print('test_alert_santa')
+        self.student.alert_santa()
 
-        self.assertTrue(student.naughty_list)
+        self.assertTrue(self.student.naughty_list)
 
 
 if __name__ == '__main__':
